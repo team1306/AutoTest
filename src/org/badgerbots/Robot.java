@@ -76,20 +76,6 @@ public class Robot extends SimpleRobot {
      * This function is called once each time the robot enters operator control.
      */
     public void operatorControl() {
-        a.setRaw(17);
-        b.setRaw(34);
-        c.setRaw(51);
-        d.setRaw(68);
-        e.setRaw(85);
-        f.setRaw(102);
-        g.setRaw(119);
-        h.setRaw(136);
-        i.setRaw(153);
-        j.setRaw(170);
-        k.setRaw(187);
-        l.setRaw(204);
-        m.setRaw(221);
-        n.setRaw(238);
         while(true) {
             rightm.set(1);
             leftm.set(1);
