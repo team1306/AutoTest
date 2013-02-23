@@ -20,30 +20,75 @@ import org.badgerbots.lib.*;
  */
 public class Robot extends SimpleRobot {
     
-    Victor rightm;
-    Victor leftm;
+    PWM a,b,c,d,e,f,g,h,i,j,k,l,m,n;
+    Jaguar rightm;
+    Jaguar leftm;
     
     void Robot() {
-        rightm = new Victor(1);
-        leftm = new Victor(2);
+        a = new PWM(1);
+        b = new PWM(2);
+        c = new PWM(3);
+        d = new PWM(4);
+        e = new PWM(5);
+        f = new PWM(6);
+        g = new PWM(7);
+        h = new PWM(8);
+        i = new PWM(9);
+        j = new PWM(10);
+        k = new PWM(11);
+        l = new PWM(12);
+        m = new PWM(13);
+        n = new PWM(14);
+        rightm = new Jaguar(1);
+        leftm = new Jaguar(2);
     }
     /**
      * This function is called once each time the robot enters autonomous mode.
      */
     public void autonomous() {
         System.out.println("here");
-        rightm.setSafetyEnabled(false);
-        leftm.setSafetyEnabled(false);
-        rightm.set(0.2);
-        leftm.set(0.2);
-        Timer.delay(2);
+        a.setRaw(17);
+        b.setRaw(34);
+        c.setRaw(51);
+        d.setRaw(68);
+        e.setRaw(85);
+        f.setRaw(102);
+        g.setRaw(119);
+        h.setRaw(136);
+        i.setRaw(153);
+        j.setRaw(170);
+        k.setRaw(187);
+        l.setRaw(204);
+        m.setRaw(221);
+        n.setRaw(238);
+        while(true) {
+            rightm.set(1);
+            leftm.set(1);
+        }
     }
 
     /**
      * This function is called once each time the robot enters operator control.
      */
     public void operatorControl() {
-        
+        a.setRaw(17);
+        b.setRaw(34);
+        c.setRaw(51);
+        d.setRaw(68);
+        e.setRaw(85);
+        f.setRaw(102);
+        g.setRaw(119);
+        h.setRaw(136);
+        i.setRaw(153);
+        j.setRaw(170);
+        k.setRaw(187);
+        l.setRaw(204);
+        m.setRaw(221);
+        n.setRaw(238);
+        while(true) {
+            rightm.set(1);
+            leftm.set(1);
+        }
     }
     
     /**
