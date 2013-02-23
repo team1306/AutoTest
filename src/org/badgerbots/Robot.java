@@ -23,6 +23,7 @@ public class Robot extends SimpleRobot {
     PWM a,b,c,d,e,f,g,h,i,j,k,l,m,n;
     Jaguar rightm;
     Jaguar leftm;
+    Jaguar w,x,y,z;
     
     void Robot() {
         a = new PWM(1);
@@ -41,6 +42,10 @@ public class Robot extends SimpleRobot {
         n = new PWM(14);
         rightm = new Jaguar(1);
         leftm = new Jaguar(2);
+        w = new Jaguar(3);
+        x = new Jaguar(4);
+        y = new Jaguar(5);
+        z = new Jaguar(6);
     }
     /**
      * This function is called once each time the robot enters autonomous mode.
@@ -88,6 +93,11 @@ public class Robot extends SimpleRobot {
         while(true) {
             rightm.set(1);
             leftm.set(1);
+            w.set(1);
+            x.set(1);
+            y.set(1);
+            z.set(1);
+            System.out.println("here");
         }
     }
     
