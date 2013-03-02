@@ -20,71 +20,56 @@ import org.badgerbots.lib.*;
  */
 public class Robot extends SimpleRobot {
     
-    PWM a,b,c,d,e,f,g,h,i,j,k,l,m,n;
     Jaguar rightm;
-    Jaguar leftm;
-    Jaguar w,x,y,z;
+    Encoder righte;
+    Joystick joy;
+    PIDController p;
+    Timer timer;
     
-    void Robot() {
-        a = new PWM(1);
-        b = new PWM(2);
-        c = new PWM(3);
-        d = new PWM(4);
-        e = new PWM(5);
-        f = new PWM(6);
-        g = new PWM(7);
-        h = new PWM(8);
-        i = new PWM(9);
-        j = new PWM(10);
-        k = new PWM(11);
-        l = new PWM(12);
-        m = new PWM(13);
-        n = new PWM(14);
+    public Robot() {
         rightm = new Jaguar(1);
-        leftm = new Jaguar(2);
-        w = new Jaguar(3);
-        x = new Jaguar(4);
-        y = new Jaguar(5);
-        z = new Jaguar(6);
+        righte = new Encoder(1, 2);
+        timer = new Timer();
+        righte.setReverseDirection(false);
+        joy = new Joystick (1);
+        rightm.setSafetyEnabled(false);
+        righte.setDistancePerPulse(.020827728435666666666666666666);
+        righte.setPIDSourceParameter(Encoder.PIDSourceParameter.kRate);
+        righte.start();
+        p = new PIDController(0.1, 0.0, 0.0, righte, rightm);
+        p.enable();
     }
     /**
      * This function is called once each time the robot enters autonomous mode.
      */
     public void autonomous() {
-        System.out.println("here");
-        a.setRaw(17);
-        b.setRaw(34);
-        c.setRaw(51);
-        d.setRaw(68);
-        e.setRaw(85);
-        f.setRaw(102);
-        g.setRaw(119);
-        h.setRaw(136);
-        i.setRaw(153);
-        j.setRaw(170);
-        k.setRaw(187);
-        l.setRaw(204);
-        m.setRaw(221);
-        n.setRaw(238);
-        while(true) {
-            rightm.set(1);
-            leftm.set(1);
+        p.setSetpoint(50);
+        timer.start();
+        System.out.println("Setpoint | \t Error | \t Result |\t motor |\t Encoder");
+        while (timer.get()<20)
+        {
+            System.out.println(righte.getRate());
+ 
+            System.out.println(p.getSetpoint() + " |\t" +  p.getError() + " |\t" +  p.get()  + " |\t  " + righte.get() + "|\t" + righte.getRate());
+        }
+        System.out.println("reached end of loop");
+        p.disable();
+        while (isAutonomous())
+        {
+            Timer.delay(1/1000);
         }
     }
 
     /**
      * This function is called once each time the robot enters operator control.
      */
-    public void operatorControl() {
-        while(true) {
-            rightm.set(1);
-            leftm.set(1);
-            w.set(1);
-            x.set(1);
-            y.set(1);
-            z.set(1);
-            System.out.println("here");
-        }
+    public void operatorControl() 
+    {
+      while (isOperatorControl())  
+      {
+        rightm.set(joy.getX());
+        System.out.println(righte.getRate());
+      }
     }
     
     /**
